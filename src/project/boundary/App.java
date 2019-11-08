@@ -1,34 +1,33 @@
 package project.boundary;
 import javax.swing.JFrame;
 import javax.swing.JButton;
-import java.awt.BorderLayout;
-import javax.swing.JPanel;
 import javax.swing.JLabel;
-import java.awt.FlowLayout;
+import javax.swing.JPanel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.border.EmptyBorder;
 
-public class App {
+import project.entity.Model;
 
-	public JFrame frame;
+public class App extends JFrame {
+
+	private JPanel contentPane;
 	PuzzleView panel;
+	Model model;
 
 	/**
 	 * Create the application.
 	 */
-	public App() {
-		initialize();
-	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-		frame = new JFrame();
-		frame.setResizable(false);
-		frame.setBounds(100, 100, 500, 500);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	public App(Model model) {
+		this.model = model;
+		
+		setResizable(false);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 370, 465);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
 		
 		JButton btnReset = new JButton("Reset");
 		
@@ -36,19 +35,23 @@ public class App {
 		
 		JLabel numberOfMoves = new JLabel("New label");
 		
-		panel = new PuzzleView();
-		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
+		panel = new PuzzleView(model);
+		
+		
+		GroupLayout groupLayout = new GroupLayout(contentPane);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addComponent(panel, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 452, Short.MAX_VALUE)
 						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(11)
+							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 340, GroupLayout.PREFERRED_SIZE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addContainerGap()
 							.addComponent(lblMoves)
-							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGap(21)
 							.addComponent(numberOfMoves)
-							.addPreferredGap(ComponentPlacement.RELATED, 207, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
 							.addComponent(btnReset)))
 					.addContainerGap())
 		);
@@ -56,15 +59,14 @@ public class App {
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(btnReset)
-						.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-							.addComponent(lblMoves)
-							.addComponent(numberOfMoves)))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(panel, GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
-					.addContainerGap())
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(numberOfMoves)
+						.addComponent(lblMoves)
+						.addComponent(btnReset))
+					.addGap(6)
+					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 340, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
-		frame.getContentPane().setLayout(groupLayout);
+		contentPane.setLayout(groupLayout);
 	}
 }

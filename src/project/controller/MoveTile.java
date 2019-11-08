@@ -1,10 +1,10 @@
 package project.controller;
 
+import java.awt.Point;
 import project.boundary.App;
 import project.entity.Model;
 
 public class MoveTile {
-	
 	Model model;
 	App app;
 	
@@ -13,5 +13,7 @@ public class MoveTile {
 		this.app = app;
 	}
 	
-	
+	public void mousePressed (Point p) {
+		
+	}
 }

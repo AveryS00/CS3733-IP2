@@ -1,5 +1,14 @@
 package project.controller;
 
-public class WinPuzzle {
+import project.boundary.App;
+import project.entity.Model;
 
+public class WinPuzzle {
+	Model model;
+	App app;
+	
+	public WinPuzzle (Model model, App app) {
+		this.model = model;
+		this.app = app;
+	}
 }

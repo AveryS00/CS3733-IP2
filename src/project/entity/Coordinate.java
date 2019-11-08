@@ -1,8 +1,8 @@
 package project.entity;
 
 public class Coordinate {
-	int row;
-	int col;
+	public final int row;
+	public final int col;
 	
 	public Coordinate (int row, int col) {
 		this.row = row;

@@ -2,11 +2,17 @@ package project.entity;
 
 public class Model {
 	
-	Puzzle mainPuzzle;
-	int moves;
+	Puzzle puzzle;
 	
-	public Model() {
-		mainPuzzle = new Puzzle();
-		moves = 0;
+	public Model () {
+		puzzle = new Puzzle();
+	}
+	
+	public void newPuzzle () {
+		puzzle = new Puzzle();
+	}
+	
+	public Puzzle getPuzzle () {
+		return puzzle;
 	}
 }
