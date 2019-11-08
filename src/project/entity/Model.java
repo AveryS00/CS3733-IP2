@@ -9,5 +9,4 @@ public class Model {
 		mainPuzzle = new Puzzle();
 		moves = 0;
 	}
-	
 }

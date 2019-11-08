@@ -12,11 +12,12 @@ public class Puzzle {
 	 */
 	public Puzzle() {
 		board = initConfig();
-		emptyCoordinate = new Coordinate (0, 2);
+		emptyCoordinate = new Coordinate (2, 0);
 	}
 	
 	/**
 	 * Constructs the initial configuration of the board. The empty tile is represented by null
+	 * Initial configuration for student ID ending in 6.
 	 * @return the 2D tile array of the board
 	 */
 	Tile[][] initConfig () {
@@ -38,12 +39,14 @@ public class Puzzle {
 	
 	/**
 	 * Checks if the tile is next to the empty space and can be moved.
-	 * @param row The row of the tile
-	 * @param col The col of the tile
+	 * @param coordinate The x, y coordinate of the tile.
 	 * @return true if the tile is next to the empty space
 	 */
 	boolean isMoveable (Coordinate coordinate) {
-		return Math.abs(coordinate.row - emptyCoordinate.row) == 1 &&
-				Math.abs(coordinate.row - emptyCoordinate.row) == 1;
+		return (Math.abs(coordinate.row - emptyCoordinate.row) == 1 && 
+				coordinate.col - emptyCoordinate.col == 0) 
+				|| // ^same column, row difference is 1. \/same row, column difference is 1.
+				(coordinate.row - emptyCoordinate.row == 0 &&
+				Math.abs(coordinate.col - emptyCoordinate.col) == 1);
 	}
 }
