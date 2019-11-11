@@ -18,7 +18,7 @@ public class ResetPuzzle extends MouseAdapter {
 	@Override
 	public void mousePressed (MouseEvent me) {
 		model.newPuzzle();
-		app.getMovesButton().setText("0");
+		app.getMovesLabel().setText("0");
 		app.repaint();
 	}
 }

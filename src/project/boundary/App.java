@@ -21,6 +21,7 @@ public class App extends JFrame {
 	PuzzleView panel;
 	Model model;
 	JLabel numberOfMoves;
+	JButton btnReset;
 
 	/**
 	 * Create the application.
@@ -35,7 +36,7 @@ public class App extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
-		JButton btnReset = new JButton("Reset");
+		btnReset = new JButton("Reset");
 		btnReset.addMouseListener(new ResetPuzzle(model, this));
 		btnReset.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		
@@ -80,8 +81,15 @@ public class App extends JFrame {
 		contentPane.setLayout(groupLayout);
 	}
 	
-	public JLabel getMovesButton () {
+	public JLabel getMovesLabel () {
 		return numberOfMoves;
 	}
 	
+	public PuzzleView getPanel () {
+		return panel;
+	}
+	
+	public JButton getResetButton () {
+		return btnReset;
+	}
 }

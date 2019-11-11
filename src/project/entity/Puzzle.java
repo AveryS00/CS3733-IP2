@@ -137,4 +137,8 @@ public class Puzzle {
 	public boolean isGameOver () {
 		return gameOver;
 	}
+	
+	public void setBoard (Tile[][] board) {
+		this.board = board;
+	}
 }
