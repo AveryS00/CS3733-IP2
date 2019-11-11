@@ -3,11 +3,16 @@ import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import java.awt.Font;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 
+import project.controller.MoveTile;
+import project.controller.ResetPuzzle;
 import project.entity.Model;
 
 public class App extends JFrame {
@@ -15,6 +20,7 @@ public class App extends JFrame {
 	private JPanel contentPane;
 	PuzzleView panel;
 	Model model;
+	JLabel numberOfMoves;
 
 	/**
 	 * Create the application.
@@ -30,43 +36,52 @@ public class App extends JFrame {
 		setContentPane(contentPane);
 		
 		JButton btnReset = new JButton("Reset");
+		btnReset.addMouseListener(new ResetPuzzle(model, this));
+		btnReset.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		
 		JLabel lblMoves = new JLabel("Moves: ");
+		lblMoves.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		
-		JLabel numberOfMoves = new JLabel("New label");
+		numberOfMoves = new JLabel("0");
+		numberOfMoves.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		
 		panel = new PuzzleView(model);
+		panel.addMouseListener(new MoveTile(model, this));
 		
 		
 		GroupLayout groupLayout = new GroupLayout(contentPane);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(11)
-							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 340, GroupLayout.PREFERRED_SIZE))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(lblMoves)
-							.addGap(21)
-							.addComponent(numberOfMoves)
-							.addPreferredGap(ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
-							.addComponent(btnReset)))
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(11)
+					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 340, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap())
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(53)
+					.addComponent(lblMoves)
+					.addGap(3)
+					.addComponent(numberOfMoves)
+					.addPreferredGap(ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
+					.addComponent(btnReset)
+					.addGap(55))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(numberOfMoves)
+						.addComponent(btnReset)
 						.addComponent(lblMoves)
-						.addComponent(btnReset))
+						.addComponent(numberOfMoves))
 					.addGap(6)
 					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 340, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		contentPane.setLayout(groupLayout);
 	}
+	
+	public JLabel getMovesButton () {
+		return numberOfMoves;
+	}
+	
 }

@@ -4,6 +4,7 @@ public class Puzzle {
 	Tile board[][];
 	Coordinate emptyCoordinate;
 	int moves;
+	boolean gameOver;
 	
 	/**
 	 * Constructs a new puzzle in initial configuration.
@@ -12,6 +13,7 @@ public class Puzzle {
 		board = initConfig();
 		emptyCoordinate = new Coordinate (2, 0);
 		moves = 0;
+		gameOver = false;
 	}
 	
 	/**
@@ -61,7 +63,7 @@ public class Puzzle {
 	 * @return true if the puzzle is in a losing state
 	 */
 	public boolean hasLost () {
-		int count[] = new int[4];
+		int count[] = new int[5];
 		for (int row = 0; row < 3; row++) {
 			for (int col = 0; col < 3; col++) {
 				if (board[row][col] != null) {
@@ -111,7 +113,7 @@ public class Puzzle {
 	 */
 	public void swapTile (Coordinate coordinate) {
 		board[coordinate.row][coordinate.col].flipTile();
-		board[emptyCoordinate.row][emptyCoordinate.col]= board[coordinate.row][coordinate.col];
+		board[emptyCoordinate.row][emptyCoordinate.col] = board[coordinate.row][coordinate.col];
 		board[coordinate.row][coordinate.col] = null;
 		emptyCoordinate = coordinate;
 		moves++;
@@ -126,5 +128,13 @@ public class Puzzle {
 	
 	public Tile[][] getBoard () {
 		return board;
+	}
+	
+	public void endGame () {
+		gameOver = true;
+	}
+	
+	public boolean isGameOver () {
+		return gameOver;
 	}
 }
