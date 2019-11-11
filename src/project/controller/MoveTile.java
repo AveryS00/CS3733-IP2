@@ -16,6 +16,10 @@ public class MoveTile extends MouseAdapter {
 		this.app = app;
 	}
 	
+	/**
+	 * Translates a given point from a mouseEvent into a row and column and sends that to the
+	 * entity to see if it is moveable and moves it if it is.
+	 */
 	@Override
 	public void mousePressed (MouseEvent me) {
 		Point p = me.getPoint();
@@ -37,16 +41,24 @@ public class MoveTile extends MouseAdapter {
 			row = 2;
 		}
 		
-		if (!model.getPuzzle().isGameOver() && row != -1 && col != -1 && model.getPuzzle().isMoveable(new Coordinate(row, col))) {
+		// Ensure that the game is not over, a tile was actually clicked, and that the tile was moveable before moving
+		if (!model.getPuzzle().isGameOver() && 
+				row != -1 && col != -1 && 
+				model.getPuzzle().isMoveable(new Coordinate(row, col))) {
+			
 			model.getPuzzle().swapTile(new Coordinate (row, col));
 			app.getMovesLabel().setText("" + model.getPuzzle().getMoves());
 			
+			// Check to see if moving the tile ended the game.
 			if (model.getPuzzle().hasWon()) {
 				model.getPuzzle().endGame();
 			} else if (model.getPuzzle().hasLost()) {
 				model.getPuzzle().endGame();
 			}
+			
 			app.repaint();
 		}
+		
 	}
+	
 }

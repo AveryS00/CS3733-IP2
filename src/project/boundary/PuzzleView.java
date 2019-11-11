@@ -17,6 +17,9 @@ public class PuzzleView extends JPanel {
 	}
 
 
+	/**
+	 * Paint the panel according to the underlying state given by the model.
+	 */
 	@Override
 	public void paintComponent (Graphics g) {
 		if (model != null) {

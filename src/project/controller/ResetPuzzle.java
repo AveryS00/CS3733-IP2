@@ -15,6 +15,9 @@ public class ResetPuzzle extends MouseAdapter {
 		this.app = app;
 	}
 	
+	/**
+	 * Resets the puzzle when the reset button is pressed.
+	 */
 	@Override
 	public void mousePressed (MouseEvent me) {
 		model.newPuzzle();

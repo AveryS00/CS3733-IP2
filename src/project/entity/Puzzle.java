@@ -126,19 +126,26 @@ public class Puzzle {
 		 return moves;
 	}
 	
+	/**
+	 * Returns the board of the puzzle.
+	 * @return A 2D array of tiles with null indicating the empty space.
+	 */
 	public Tile[][] getBoard () {
 		return board;
 	}
 	
+	/**
+	 * Changes the state of gameOver to indicate that the puzzle has been finished.
+	 */
 	public void endGame () {
 		gameOver = true;
 	}
 	
+	/**
+	 * Checks to see if the puzzle is considered finished.
+	 * @return
+	 */
 	public boolean isGameOver () {
 		return gameOver;
-	}
-	
-	public void setBoard (Tile[][] board) {
-		this.board = board;
 	}
 }

@@ -37,6 +37,10 @@ public class Tile {
 		}
 	}
 	
+	/**
+	 * Returns whether the tile is currently flipped.
+	 * @return true if the tile is flipped, false otherwise.
+	 */
 	public boolean getIsFlipped () {
 		return isFlipped;
 	}

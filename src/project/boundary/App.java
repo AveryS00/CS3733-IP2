@@ -81,14 +81,26 @@ public class App extends JFrame {
 		contentPane.setLayout(groupLayout);
 	}
 	
+	/**
+	 * Get the Label that shows the moves counter.
+	 * @return 
+	 */
 	public JLabel getMovesLabel () {
 		return numberOfMoves;
 	}
 	
+	/**
+	 * Get the panel that holds the drawn tiles.
+	 * @return
+	 */
 	public PuzzleView getPanel () {
 		return panel;
 	}
 	
+	/**
+	 * Get the button, that when pressed, resets the configuration of the tiles.
+	 * @return
+	 */
 	public JButton getResetButton () {
 		return btnReset;
 	}
